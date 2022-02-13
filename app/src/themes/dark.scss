@@ -1,0 +1,13 @@
+@charset "utf-8";
+@use '~@material/theme/color-palette' as colors;
+@use '~@material/theme' as theme with
+  (
+    $primary: colors.$indigo-500,
+    $secondary: colors.$pink-a400,
+    $background: colors.$grey-900,
+    $surface: colors.$grey-800
+  );
+
+@media screen and (prefers-color-scheme: dark) {
+  @include theme.core-styles;
+}

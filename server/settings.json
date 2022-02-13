@@ -1,0 +1,27 @@
+{
+  "address": "127.0.0.1",
+  "port": 8000,
+  "workers": 32,
+  "keep_alive": 5,
+  "limits": {
+    "bytes": 8192,
+    "data-form": 2097152,
+    "file": 1048576,
+    "form": 32768,
+    "json": 1048576,
+    "msgpack": 1048576,
+    "string": 8192
+  },
+  "tls": null,
+  "ident": "Rust PWA",
+  "secret_key": "/re436IhGnLOfgGZONNtyz1/fPhjXCurL6OmB0XhbSw=",
+  "temp_dir": "C:\\Users\\lafon\\AppData\\Local\\Temp\\",
+  "log_level": "normal",
+  "shutdown": {
+    "ctrlc": true,
+    "grace": 2,
+    "mercy": 3,
+    "force": true
+  },
+  "cli_colors": true
+}

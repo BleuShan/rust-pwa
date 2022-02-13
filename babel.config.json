@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "bugfixes": true,
+        "modules": false,
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
+        },
+        "shippedProposals": true
+      }
+    ]
+  ]
+}

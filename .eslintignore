@@ -1,0 +1,7 @@
+.idea
+.yarn
+.git
+out
+**/wwwroot
+.pnp.cjs
+coverage

@@ -1,0 +1,11 @@
+.idea
+.yarn
+.git
+out
+**/wwwroot
+**/*.json
+**/*.cs
+**/*.sln
+**/*.razor
+*.config.*
+scripts

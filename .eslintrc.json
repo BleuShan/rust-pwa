@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true,
+    "serviceworker": true,
+    "worker": true,
+    "es2021": true,
+    "node": true
+  },
+  "globals": {
+    "Blazor": "readonly",
+    "__APP_VERSION__": "readonly",
+    "DotNet": "readonly"
+  },
+  "extends": ["standard", "plugin:prettier/recommended"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["@babel"],
+  "rules": {
+    "spaced-comment": ["error", "always", {"markers": ["?"]}],
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "none",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ]
+  }
+}

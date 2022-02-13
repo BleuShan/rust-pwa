@@ -1,0 +1,22 @@
+[package]
+edition = "2021"
+name    = "rust-pwa-server"
+version = "0.1.0"
+
+
+[dependencies]
+
+[dependencies.rocket]
+features = ["uuid", "secrets", "tls", "json"]
+version  = "0.5.0-rc.1"
+
+[dependencies.rust-pwa-core]
+path = '../core'
+
+[dependencies.serde]
+features = ["derive"]
+version  = "1"
+
+[dependencies.tokio]
+features = ["full"]
+version  = "1.16.1"
