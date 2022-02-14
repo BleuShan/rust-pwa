@@ -8,12 +8,17 @@ version = "0.1.0"
 crate-type = ["cdylib"]
 
 [dependencies]
-wasm-bindgen = "0.2.79"
-js-sys = "0.3.56"
+js-sys               = "0.3.56"
 wasm-bindgen-futures = "0.4.29"
+console_error_panic_hook = "0.1.7"
+wee_alloc = "0.4.5"
 
 [dependencies.rust-pwa-core]
 path = '../core'
+
+[dependencies.wasm-bindgen]
+features = ["default", "serde-serialize"]
+version  = "0.2"
 
 [dependencies.web-sys]
 features = [

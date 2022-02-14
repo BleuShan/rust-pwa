@@ -26,11 +26,6 @@ pub use thiserror::{
     Error,
 };
 
-pub use crate::tracing::{
-    self,
-    prelude::*,
-};
-
 pub use derive_more::{
     AsMut,
     AsRef,
