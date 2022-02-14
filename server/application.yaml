@@ -11,7 +11,6 @@ limits:
   msgpack: 1048576
   string: 8192
 ident: Rocket
-secret_key: /re436IhGnLOfgGZONNtyz1/fPhjXCurL6OmB0XhbSw=
 log_level: normal
 shutdown:
   ctrlc: true
