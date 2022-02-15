@@ -5,6 +5,11 @@ version = "0.1.0"
 
 
 [dependencies]
+tracing = "0.1.30"
+tracing-futures = "0.2.5"
+tracing-log = "0.1.2"
+tracing-appender = "0.2.0"
+log = "0.4.14"
 
 
 [dependencies.figment]
@@ -15,13 +20,16 @@ version  = "0.10.6"
 features = ["uuid", "secrets", "tls", "json"]
 version  = "0.5.0-rc.1"
 
-
 [dependencies.rust-pwa-core]
 path = '../core'
 
 [dependencies.serde]
 features = ["derive"]
 version  = "1"
+
+[dependencies.tracing-subscriber]
+features = ["default", "env-filter", "json", "time"]
+version  = "0.3.8"
 
 [dependencies.tokio]
 features = ["full"]
