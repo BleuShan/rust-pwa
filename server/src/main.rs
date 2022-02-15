@@ -5,10 +5,18 @@
     rust_2018_idioms,
     unreachable_pub
 )]
-#![feature(never_type, trait_alias, backtrace, path_file_prefix, is_some_with)]
+#![feature(
+    never_type,
+    trait_alias,
+    backtrace,
+    path_file_prefix,
+    is_some_with,
+    total_cmp
+)]
 #![recursion_limit = "1024"]
 
 pub mod config;
+pub mod handlers;
 mod prelude;
 use prelude::*;
 
