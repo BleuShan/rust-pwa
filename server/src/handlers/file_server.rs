@@ -1,5 +1,8 @@
 use super::*;
-use crate::typed_header;
+use crate::typed_header::{
+    self,
+    AcceptEncoding,
+};
 use std::path::{
     Path,
     PathBuf,
@@ -15,7 +18,11 @@ use http::{
     uri,
     Method,
 };
-use rocket::fs::NamedFile;
+use rocket::{
+    fs::NamedFile,
+    response::Responder,
+    Response,
+};
 
 impl Into<Vec<Route>> for FileServer {
     fn into(self) -> Vec<Route> {
@@ -28,7 +35,7 @@ impl Into<Vec<Route>> for FileServer {
 
 #[async_trait]
 impl Handler for FileServer {
-    #[instrument(field(tmp = std::any::type_name::<Self>()), skip(data))]
+    #[instrument(field(tmp = std::any::type_name::<Self>()), skip_all)]
     async fn handle<'r>(&self, req: &'r Request<'_>, data: Data<'r>) -> Outcome<'r> {
         use uri::{
             fmt::Path,
@@ -42,18 +49,41 @@ impl Handler for FileServer {
             .map(|path| self.root.join(path));
 
         match maybe_path {
-            Some(path) => {
-                let encodings: Vec<_> = req
-                    .headers()
-                    .get(header::ACCEPT_ENCODING.as_str())
-                    .collect();
-                info!("{:?}", encodings);
-                let file = NamedFile::open(path).await.ok();
+            Some(path) if path.is_dir() => {
+                let index_path = path.join("index.html");
+                let file = NamedFile::open(index_path).await.ok();
 
+                Outcome::from_or_forward(req, data, file)
+            }
+            Some(path) => {
+                let file = NamedFile::open(path).await.ok();
                 Outcome::from_or_forward(req, data, file)
             }
             _ => Outcome::forward(data),
         }
+    }
+}
+
+#[derive(Debug)]
+pub struct NamedFileResolver(PathBuf);
+impl<'r> Responder<'r, 'static> for NamedFileResolver {
+    fn respond_to(self, request: &'r Request<'_>) -> rocket::response::Result<'static> {
+        let Self(path) = self;
+        let encodings: Vec<AcceptEncoding> = request
+            .headers()
+            .get(header::ACCEPT_ENCODING.as_str())
+            .flat_map(|s| s.split(","))
+            .map(AcceptEncoding::from_str)
+            .map(|item| item.unwrap())
+            .collect();
+
+        if !path.exists() {
+            return Err(http::Status::NotFound);
+        }
+
+        let mut response = Response::build();
+
+        response.ok()
     }
 }
 

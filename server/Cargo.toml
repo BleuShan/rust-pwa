@@ -5,15 +5,25 @@ version = "0.1.0"
 
 
 [dependencies]
-tracing = "0.1.30"
-tracing-futures = "0.2.5"
-tracing-log = "0.1.2"
+tracing          = "0.1.30"
 tracing-appender = "0.2.0"
-log = "0.4.14"
+tracing-futures  = "0.2.5"
+tracing-log      = "0.1.2"
 
+[dependencies.clap]
+features = [
+  "default",
+  "env",
+  "regex",
+  "derive",
+  "unicode",
+  "wrap_help",
+  "cargo",
+]
+version = "3"
 
 [dependencies.figment]
-features = ["toml", "yaml", "json", "env"]
+features = ["yaml", "env"]
 version  = "0.10.6"
 
 [dependencies.rocket]
@@ -26,6 +36,11 @@ path = '../core'
 [dependencies.serde]
 features = ["derive"]
 version  = "1"
+
+[dependencies.sqlx]
+features = ["runtime-tokio-rustls", "postgres", "sqlite", "time", "uuid"]
+version  = "0.5"
+
 
 [dependencies.tracing-subscriber]
 features = ["default", "env-filter", "json", "time"]

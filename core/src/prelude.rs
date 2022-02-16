@@ -41,6 +41,11 @@ pub use derive_more::{
     TryInto,
 };
 
+pub use regex::{
+    self,
+    Error as RegexError,
+    Regex,
+};
 pub use std::{
     backtrace::Backtrace,
     convert::{
